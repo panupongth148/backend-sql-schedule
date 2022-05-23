@@ -67,10 +67,11 @@ const login = async (req, res) => {
 
 
 const getUserByToken = (req, res) =>{
-    let sql = `SELECT * FROM account WHERE token = \'${req.body.token}\'`;
+    console.log(req.query.token)
+    let sql = `SELECT * FROM account WHERE token = \'${req.query.token}\'`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
-        console.log(results);
+        // console.log(results);
         res.send(results);
     });
 }
