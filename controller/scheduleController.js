@@ -17,8 +17,8 @@ const addSchedule= async (req, res) => {
     let sql = `insert into schedule set ?`;
     let query = db.query(sql, schedule, (err, results) => {
         if(err) throw err;
-        // console.log(results);
-        res.send("success add schedule");
+        console.log(results.insertId);
+        res.send({sehedule_id : results.insertId});
     });
 }
 
@@ -46,7 +46,7 @@ const getAllScheduleById = async (req, res) =>{
     let sql = `SELECT * FROM schedule WHERE account_id = \'${req.params.id}\'`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
-        console.log(results);
+        // console.log(results);
         res.send(results);
     });
 }

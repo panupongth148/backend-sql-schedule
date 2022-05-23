@@ -36,7 +36,7 @@ const getSubjectByScheduleId = async(req, res) => {
     let sql = `SELECT * FROM subject WHERE schedule_id = \'${req.params.id}\'`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
-        console.log(results);
+        // console.log(results);
         res.send(results);
     });
 }
