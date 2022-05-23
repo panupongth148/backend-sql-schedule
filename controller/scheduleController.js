@@ -51,5 +51,39 @@ const getAllScheduleById = async (req, res) =>{
     });
 }
 
+const getScheduleInfoByCode = async (req, res) =>{
+    let subjectDetail;
+    let insertIdNew;
+    let sql = `select s.*, sc.s_name from schedule sc join subject s using(schedule_id) where sc.code=\'${req.body.code}\'`
+    let query = await db.query(sql, (err, results) => {
+        if(err) throw err;
+        // console.log(results);
+        res.send(results);
+        // subjectDetail = results
+        // console.log(subjectDetail)
+    });
+    // console.log(subjectDetail)
+    // const schedule = {s_name: subjectDetail[0].s_name, code: generateCode(), account_id: req.body.account_id}
+    // let sql2 = `insert into schedule set ?`
+    // let query2 = await db.query(sql2, schedule, (err, results) => {
+    //     if(err) throw err;
+    //     console.log(results.insertId);
+    //     insertIdNew = results.insertId
+    // });
+    // for(let i = 0;i< subjectDetail.length;i++){
+    //     const subject = {subject_name: subjectDetail[i].subject_name, period:subjectDetail[i].period, date: subjectDetai[i].date, link: subjectDetail[i].link, schedule_id: insertIdNew}
+    // // let sql = `insert into account values(${req.body.username}, ${req.body.password}, ${req.body.email})`;
+    // let sql3 = `insert into subject set ?`;
+    // let query3 = await db.query(sql3, subject, (err, results) => {
+    //     if(err) throw err;
+    //     // console.log(results);
+    //     res.send("success add subject");
+    // });
+    // }
+    
+    
+}
 
-module.exports = {addSchedule, getAllScheduleById, editSchedule, deleteSchedule}
+
+
+module.exports = {addSchedule, getAllScheduleById, editSchedule, deleteSchedule, getScheduleInfoByCode}

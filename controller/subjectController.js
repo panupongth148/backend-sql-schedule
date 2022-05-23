@@ -22,13 +22,22 @@ const editSubject= async (req, res) => {
         res.send("update subject success")})
 }
 
-const deleteSubject= async (req, res) => {
+const deleteSubject = async (req, res) => {
     let deleteSchedule = `DELETE FROM subject WHERE subject_id = \'${req.body.subject_id}\'`
     let query = await db.query(deleteSchedule, (err, results) => {
         if(err) throw err;
         console.log(results)
         console.log("delete success")
         res.send("delete subject success")})
+}
+
+const deleteSubjectByScheduleId = async (req, res) => {
+    let deleteSchedule = `DELETE FROM subject WHERE schedule_id = \'${req.body.schedule_id}\'`
+    let query = await db.query(deleteSchedule, (err, results) => {
+        if(err) throw err;
+        console.log(results)
+        console.log("delete success")
+        res.send("delete subject by suchedule success")})
 }
 
 const getSubjectByScheduleId = async(req, res) => {
@@ -40,4 +49,4 @@ const getSubjectByScheduleId = async(req, res) => {
         res.send(results);
     });
 }
-module.exports = {addSubject, editSubject, deleteSubject, getSubjectByScheduleId}
+module.exports = {addSubject, editSubject, deleteSubject, getSubjectByScheduleId, deleteSubjectByScheduleId}

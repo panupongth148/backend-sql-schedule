@@ -11,5 +11,7 @@ router.put("/editschedule", schedukeController.editSchedule);
 
 router.delete("/deleteschedule/:id", schedukeController.deleteSchedule);
 
+router.post("/schedule/bycode", schedukeController.getScheduleInfoByCode);
+
 
 exports.router = router;
