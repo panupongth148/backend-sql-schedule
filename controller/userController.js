@@ -65,4 +65,14 @@ const login = async (req, res) => {
     });
 }
 
-module.exports = {registerAccount, getAllUser, getUserByUsername, login}
+
+const getUserByToken = (req, res) =>{
+    let sql = `SELECT * FROM account WHERE token = \'${req.body.token}\'`;
+    let query = db.query(sql, (err, results) => {
+        if(err) throw err;
+        console.log(results);
+        res.send(results);
+    });
+}
+
+module.exports = {registerAccount, getAllUser, getUserByUsername, login, getUserByToken}
