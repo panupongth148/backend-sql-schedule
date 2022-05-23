@@ -1,3 +1,4 @@
+const req = require("express/lib/request");
 const db = require("../db")
 
 
@@ -84,6 +85,21 @@ const getScheduleInfoByCode = async (req, res) =>{
     
 }
 
+const listSubjectInsert = async (req, res) =>{
+    console.log(req.body.subjects)
+    const subjects = req.body.subjects
+    for(let i = 0;i< req.body.subjects.length;i++){
+        const subject = {subject_name: subjects[i].subject_name, period: subjects[i].period, date: subjects[i].date, link: subjects[i].link, schedule_id: req.body.scheduleId}
+    // let sql = `insert into account values(${req.body.username}, ${req.body.password}, ${req.body.email})`;
+    let sql3 = `insert into subject set ?`;
+    let query3 = await db.query(sql3, subject, (err, results) => {
+        if(err) throw err;
+        // console.log(results);
+    });
+    }
+    res.send("success add subject");
+}
 
 
-module.exports = {addSchedule, getAllScheduleById, editSchedule, deleteSchedule, getScheduleInfoByCode}
+
+module.exports = {addSchedule, getAllScheduleById, editSchedule, deleteSchedule, getScheduleInfoByCode, listSubjectInsert}

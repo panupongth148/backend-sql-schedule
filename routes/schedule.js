@@ -9,9 +9,11 @@ router.post("/addschedule", schedukeController.addSchedule);
 
 router.put("/editschedule", schedukeController.editSchedule);
 
-router.delete("/deleteschedule/:id", schedukeController.deleteSchedule);
+router.delete("/deleteschedule", schedukeController.deleteSchedule);
 
 router.post("/schedule/bycode", schedukeController.getScheduleInfoByCode);
+
+router.post("/schedule/subjectlist", schedukeController.listSubjectInsert);
 
 
 exports.router = router;
